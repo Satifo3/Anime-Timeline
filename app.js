@@ -63,6 +63,7 @@ function clearRecords(){
   }
 }
 function startGame(n){
+ refreshGameBest();
  maxRound=n; score=0; round=1;
  pool=shuffle(window.ANIME_DATA);
  line=[pool.pop(),pool.pop(),pool.pop()].sort((a,b)=>a.date.localeCompare(b.date));
@@ -102,3 +103,14 @@ function finish(){
 }
 $('count').textContent=window.ANIME_DATA.length;
 updateBest();
+
+function refreshGameBest(){
+  const r=getRecords();
+  const el=document.getElementById('gameBest');
+  if(el) el.textContent=r.length ? r[0].points+' pts' : '---';
+}
+function showRecordsFromGame(){
+  document.getElementById('game').classList.add('hidden');
+  document.getElementById('records').classList.remove('hidden');
+  renderRecords();
+}
