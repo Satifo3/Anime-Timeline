@@ -1,35 +1,27 @@
-# ANIME TIMELINE — Prototype v0.5
+# ANIME TIMELINE — Prototype v0.7
 
-## iPhone向けフラット構成
-この版は GitHub へiPhoneからアップロードしやすいように、
-画像を含めてすべてのファイルを同じ階層に置いてあります。
+## v0.7
+iPhone向けに縦画面・横画面の2種類のUIを追加しました。
 
-解凍すると以下が全部まとめて展開されます。
+### 縦向き
+- 従来の縦長レイアウトをスマホ向けに最適化
+- タイトル・問題・タイムラインを縦方向に見やすく配置
+- HUDを上部固定
+- タイムラインを指で横スクロールしやすく調整
 
-- index.html
-- style.css
-- app.js
-- anime-data.js
-- manifest.webmanifest
-- icon-512.png
-- icon-192.png
-- apple-touch-icon.png
-- favicon.png
-- README.md
+### 横向き
+- 専用ランドスケープUIへ自動切替
+- 左側にコンパクトなロゴ・タイトルエリア
+- 右側をゲーム領域として広く使用
+- 問題カードを横長レイアウト化
+- タイムラインの表示枚数を増加
+- 画面高さが低いiPhone向けの追加最適化
 
-assets フォルダは不要です。
-
-## 収録
-160作品
-
-## 機能
+### 共通
+- iPhoneのノッチ / Dynamic Island / ホームインジケータ用 Safe Area 対応
+- 160作品
 - 10問 / 20問
 - BEST SCORE
 - 上位10レコード
-- 正解率
-- プレイ日時保存
-- iPhoneホーム画面アイコン
-- favicon
-- GitHub Pages対応
-
-GitHubには、解凍後に出てきたファイルを全部まとめてアップロードすればOKです。
+- 正解率 / プレイ日時保存
+- フラット構成 / GitHub Pages対応
