@@ -3,78 +3,116 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#090a11">
+<meta name="theme-color" content="#080912">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="manifest.webmanifest">
-<title>ANIME TIMELINE — v0.8</title>
+<title>ANIME TIMELINE — v0.9</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="brand">
-  <div class="brandInner">
+
+<header class="appHeader">
+  <div class="brandBlock">
     <div class="appLogoFrame"><img class="appLogo" src="icon-192.png" alt=""></div>
-    <div class="brandText">
-      <h1><span class="jp">アニメ</span><span class="blue">タイムライン</span></h1>
-      <div class="sub">〜 平成アニメ 時系列クイズ 〜</div>
-      <div class="years">1994 <span>—</span> 2026</div>
+    <div class="brandCopy">
+      <h1><span class="pink">アニメ</span><span class="cyan">タイムライン</span></h1>
+      <p>〜 平成アニメ 時系列クイズ 〜</p>
+      <div class="brandYears"><b>1994</b><span>—</span><b>2026</b></div>
     </div>
   </div>
+  <button class="menuButton" onclick="location.reload()">☰ メニュー</button>
 </header>
 
 <main>
-<section id="start" class="panel startPanel">
-  <h2>ANIME TIMELINE</h2>
-  <p>カードの作品が、タイムラインのどこに入るか当てるゲームです。</p>
-  <div class="bestbox">🏆 BEST SCORE <b id="bestScore">---</b></div>
-  <div class="modes"><button onclick="startGame(10)">10問 PLAY</button><button class="blueBtn" onclick="startGame(20)">20問 PLAY</button></div>
-  <button class="recordBtn" onclick="showRecords()">RECORDS</button>
-  <small>プロトタイプ収録：<span id="count"></span>作品 / 正式版目標：305作品</small>
-</section>
 
-<section id="records" class="panel hidden">
- <div class="recordHead"><h2>RECORDS</h2><button class="tiny" onclick="hideRecords()">BACK</button></div>
- <p class="muted">この端末に保存された上位10件</p><div id="recordList"></div>
- <button class="danger" onclick="clearRecords()">記録をリセット</button>
-</section>
-
-<section id="game" class="hidden gameShell">
-  <div class="hud">
-    <div><span>問題</span><b><i id="round">1</i>/<i id="maxRound">10</i></b></div>
-    <div><span>スコア</span><b id="score">0</b><em> pts</em></div>
-    <div><span>作品形式</span><b id="qtype">TV</b></div>
-    <button class="tiny" onclick="location.reload()">終了</button>
+<section id="start" class="homeCard">
+  <div class="homeIntro">
+    <h2>放送・公開開始順に、アニメ史を並べろ。</h2>
+    <p>作品カードを正しい年代の間へ差し込むタイムラインクイズ。</p>
   </div>
 
-  <div class="playGrid">
-    <div class="question">
-      <div class="questionLabel">このアニメ作品は、どこに入る？</div>
-      <div class="qtitle" id="qtitle"></div>
-      <div class="conceal">放送・公開開始年月は回答後に表示</div>
-    </div>
+  <div class="homeStats">
+    <div><span>収録</span><b><span id="count"></span>作品</b></div>
+    <div><span>BEST SCORE</span><b id="bestScore">---</b></div>
+    <div><span>正式版目標</span><b>305作品</b></div>
+  </div>
 
-    <div class="timelinePane">
-      <div class="paneTitle">TIMELINE <small>「＋」を押して挿入位置を選択</small></div>
+  <div class="homeActions">
+    <button onclick="startGame(10)">10問モードで遊ぶ</button>
+    <button class="blueBtn" onclick="startGame(20)">20問モードで遊ぶ</button>
+    <button class="ghostBtn" onclick="showRecords()">🏆 レコード</button>
+  </div>
+</section>
+
+<section id="records" class="recordsCard hidden">
+  <div class="sectionHead">
+    <div><span class="miniLabel">LOCAL RECORD</span><h2>レコード</h2></div>
+    <button class="ghostBtn compact" onclick="hideRecords()">戻る</button>
+  </div>
+  <div id="recordList"></div>
+  <button class="dangerBtn" onclick="clearRecords()">記録をリセット</button>
+</section>
+
+<section id="game" class="hidden">
+
+  <div class="statusBar">
+    <div class="statusItem"><span>問題</span><b><i id="round">1</i> / <i id="maxRound">10</i></b></div>
+    <div class="statusItem"><span>スコア</span><b><i id="score">0</i> <small>pts</small></b></div>
+    <div class="statusItem"><span>正解率</span><b id="accuracy">0%</b></div>
+    <div class="statusItem typeItem"><span>形式</span><b id="qtype">TV</b></div>
+  </div>
+
+  <div class="gameLayout">
+    <section class="questionCard">
+      <div class="questionTop">このアニメ作品は、どこに入る？</div>
+      <div class="filmFrame">
+        <div class="filmHoles top"></div>
+        <div class="questionVisual">
+          <span class="questionEra">1994 — 2026</span>
+          <h2 id="qtitle"></h2>
+          <p>放送・公開開始年月は回答後に表示</p>
+        </div>
+        <div class="filmHoles bottom"></div>
+      </div>
+    </section>
+
+    <section class="timelineCard">
+      <div class="timelineHeader">
+        <div><span class="miniLabel">ANIME HISTORY</span><h3>TIMELINE</h3></div>
+        <p>「＋」を押して挿入位置を選択</p>
+      </div>
       <div id="timeline" class="timeline"></div>
-    </div>
+    </section>
   </div>
 
   <div id="result" class="result hidden"></div>
 
-  <div class="gameBottom">
-    <div class="miniBest">🏆 BEST <b id="gameBest">---</b></div>
+  <nav class="bottomBar">
+    <button class="subtleBtn" onclick="location.reload()">■ 終了する</button>
+    <div class="bestMini">🏆 BEST <b id="gameBest">---</b></div>
     <button onclick="startGame(10)">10問モード</button>
     <button class="blueBtn" onclick="startGame(20)">20問モード</button>
-    <button class="ghost" onclick="showRecordsFromGame()">レコード</button>
+    <button class="ghostBtn" onclick="showRecordsFromGame()">♛ レコード</button>
+  </nav>
+
+</section>
+
+<section id="finish" class="resultScreen hidden">
+  <span class="miniLabel">GAME RESULT</span>
+  <h2>RESULT</h2>
+  <div class="bigscore" id="finalScore"></div>
+  <p id="rank"></p>
+  <p class="muted" id="recordMessage"></p>
+  <div class="homeActions">
+    <button onclick="location.reload()">もう一度</button>
+    <button class="ghostBtn" onclick="showRecordsFromFinish()">レコードを見る</button>
   </div>
 </section>
 
-<section id="finish" class="panel hidden">
- <h2>RESULT</h2><div class="bigscore" id="finalScore"></div><p id="rank"></p>
- <p class="muted" id="recordMessage"></p>
- <div class="modes"><button onclick="location.reload()">もう一度</button><button class="ghost" onclick="showRecordsFromFinish()">RECORDS</button></div>
-</section>
 </main>
-<footer>ANIME TIMELINE · Prototype v0.8</footer>
-<script src="anime-data.js"></script><script src="app.js"></script>
-</body></html>
+<footer>ANIME TIMELINE · Prototype v0.9</footer>
+<script src="anime-data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

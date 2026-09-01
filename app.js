@@ -64,6 +64,7 @@ function clearRecords(){
 }
 function startGame(n){
  refreshGameBest();
+ updateAccuracy();
  maxRound=n; score=0; round=1;
  pool=shuffle(window.ANIME_DATA);
  line=[pool.pop(),pool.pop(),pool.pop()].sort((a,b)=>a.date.localeCompare(b.date));
@@ -87,13 +88,13 @@ function place(i){
  while(correct<line.length && line[correct].date.localeCompare(current.date)<=0)correct++;
  const ok=i===correct;
  if(ok)score+=100;
- line.splice(correct,0,current); $('score').textContent=score; render();
+ line.splice(correct,0,current); $('score').textContent=score; updateAccuracy(); render();
  const r=$('result');r.className='result '+(ok?'good':'bad');
  const nice=current.date.split('-').join(' / ');
  r.innerHTML=`<strong>${ok?'✓ 正解！':'✕ 惜しい！'}</strong><br>${current.title}<br><b>${nice}</b><button onclick="advance()">NEXT</button>`;
  r.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
-function advance(){round++;nextQuestion()}
+function advance(){round++;updateAccuracy();nextQuestion()}
 function finish(){
  $('game').classList.add('hidden');$('finish').classList.remove('hidden');$('finalScore').textContent=score+' pts';
  const rate=score/(maxRound*100);
@@ -113,4 +114,12 @@ function showRecordsFromGame(){
   document.getElementById('game').classList.add('hidden');
   document.getElementById('records').classList.remove('hidden');
   renderRecords();
+}
+
+function updateAccuracy(){
+  const played=Math.max(0, round-1);
+  const correct=Math.round(score/100);
+  const acc=played ? Math.round((correct/played)*100) : 0;
+  const el=document.getElementById('accuracy');
+  if(el) el.textContent=acc+'%';
 }

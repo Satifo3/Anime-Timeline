@@ -1,25 +1,149 @@
 
-*{box-sizing:border-box}html,body{margin:0;background:#07080d;color:#f7f7fb;font-family:Arial,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif}
-body{min-height:100dvh;padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right);background:radial-gradient(circle at 50% 0,#17102c 0,#080910 36%,#05060a 100%)}
-button{border:1px solid #ffffff18;border-radius:10px;background:linear-gradient(135deg,#ff3f99,#ffcc31);color:#111;padding:13px 22px;font-weight:900;cursor:pointer}.blueBtn{background:linear-gradient(135deg,#168de8,#4767ff);color:#fff}.ghost,.recordBtn,.tiny{background:#171b29;color:#fff}.tiny{padding:8px 12px}.danger{background:#3c1d27;color:#ffc2d0}.hidden{display:none!important}
-.brand{padding:calc(16px + env(safe-area-inset-top)) 16px 12px;border-bottom:1px solid #56308b;background:linear-gradient(90deg,#1a0e36,#09142c 55%,#140b2d)}
-.brandInner{max-width:1050px;margin:auto;display:flex;align-items:center;justify-content:center;gap:14px}.appLogoFrame{width:82px;height:82px;overflow:hidden;border-radius:19px;box-shadow:0 0 22px #b12cff55;position:relative;flex:none}.appLogo{position:absolute;width:106%;height:106%;left:47%;top:50%;transform:translate(-50%,-50%);object-fit:cover}
-.brandText h1{margin:0;font-size:clamp(27px,7vw,48px);line-height:1}.brandText .jp{color:#ff5baf}.brandText .blue{color:#58baff}.sub{text-align:center;margin-top:6px;font-weight:700}.years{text-align:center;margin-top:5px;color:#ff5baf;font-weight:900}.years span{color:#7d8ba5}
-main{max-width:1120px;margin:auto;padding:16px 12px 54px}.panel{max-width:680px;margin:20px auto;padding:26px;background:#10131d;border:1px solid #333a50;border-radius:16px;text-align:center}.panel h2{letter-spacing:4px}.bestbox{margin:18px auto;padding:12px;border:1px solid #3a4054;border-radius:11px;max-width:320px}.bestbox b{display:block;color:#ffd338;font-size:27px;margin-top:5px}.modes{display:flex;gap:10px;justify-content:center;margin:18px 0}.recordBtn{margin-bottom:14px}.muted,small{color:#929aab}
-.hud{display:grid;grid-template-columns:1fr 1fr 1fr auto;border:1px solid #343b53;border-radius:12px;background:#0d1019;overflow:hidden;margin-bottom:12px}.hud>div{padding:9px 14px;text-align:center;border-right:1px solid #343b53}.hud span{display:block;color:#aab0c0;font-size:11px}.hud b{font-size:22px;color:#ffd333;font-style:normal}.hud i{font-style:normal}.hud em{font-style:normal;color:#ffd333;font-size:11px}.hud .tiny{border-radius:0}
-.playGrid{display:grid;grid-template-columns:minmax(260px,.8fr) minmax(0,1.5fr);gap:12px}.question,.timelinePane{border:1px solid #493170;border-radius:13px;background:#0e111a;min-width:0}.question{padding:20px;display:flex;flex-direction:column;justify-content:center;text-align:center;min-height:180px}.questionLabel{font-weight:800;color:#cfd4e1}.qtitle{font-size:clamp(25px,4vw,39px);font-weight:900;margin:18px 0;color:#fff;text-shadow:0 0 20px #a838ff55}.conceal{color:#8f96a8;font-size:12px}.timelinePane{padding:12px}.paneTitle{font-weight:900;color:#63c7ff;margin-bottom:5px}.paneTitle small{float:right;font-weight:400}.timeline{display:flex;align-items:stretch;overflow-x:auto;padding:10px 4px 14px;-webkit-overflow-scrolling:touch}.card{min-width:128px;max-width:128px;background:#161b28;border:1px solid #3c4661;border-radius:10px;padding:13px 9px;text-align:center}.card .year{font-size:22px;font-weight:900;color:#ffcf35}.card .name{font-size:11px;margin-top:7px;line-height:1.4}.slot{min-width:46px;display:flex;align-items:center;justify-content:center}.slot button{width:36px;height:36px;padding:0;border-radius:50%;font-size:21px}.result{margin:10px auto;padding:13px;border-radius:12px;text-align:center;background:#111622;border:1px solid #3a445f}.result.good{border-color:#3ed47d}.result.bad{border-color:#ff5d72}.result strong{font-size:20px}.result button{margin-left:12px;padding:9px 15px}.gameBottom{display:grid;grid-template-columns:auto 1fr 1fr auto;gap:8px;margin-top:10px}.gameBottom button{padding:10px}.miniBest{border:1px solid #343b53;border-radius:10px;padding:9px 13px;color:#b8becd}.miniBest b{color:#ffd333}.recordRow{display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:center;text-align:left;padding:12px;border-bottom:1px solid #2d3344}.place,.pts{color:#ffd333;font-weight:900}.bigscore{font-size:58px;color:#ffd333;font-weight:900}footer{text-align:center;color:#555e72;padding:18px}
+*{box-sizing:border-box}
+:root{
+  --bg:#070810;--panel:#0d1120;--panel2:#11172a;--line:#30395b;
+  --pink:#ff5aaa;--cyan:#5fc9ff;--yellow:#ffd33d;--blue:#2c7dff;
+  --text:#f7f8fc;--muted:#939db3;
+}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif}
+body{
+  min-height:100dvh;
+  padding-left:env(safe-area-inset-left);
+  padding-right:env(safe-area-inset-right);
+  background:
+    radial-gradient(circle at 18% 0,#241044 0,transparent 30%),
+    radial-gradient(circle at 88% 10%,#071e45 0,transparent 28%),
+    linear-gradient(#090a13,#05060b);
+}
+button{font:inherit}
+button:active{transform:translateY(1px)}
+.hidden{display:none!important}
 
-/* PORTRAIT: restore a normal compact top UI; no giant icon */
-@media(max-width:767px) and (orientation:portrait){
- .brand{position:static;padding:calc(12px + env(safe-area-inset-top)) 10px 10px}.brandInner{gap:10px}.appLogoFrame{width:58px;height:58px;border-radius:14px}.brandText h1{font-size:26px}.sub{font-size:11px}.years{font-size:12px}
- main{padding:10px 9px calc(38px + env(safe-area-inset-bottom))}.panel{margin:10px auto;padding:18px 13px}.hud{grid-template-columns:1fr 1fr 1fr auto;margin-bottom:8px}.hud>div{padding:7px 5px}.hud b{font-size:17px}.hud .tiny{padding:7px 8px;font-size:11px}
- .playGrid{display:block}.question{min-height:132px;padding:14px}.questionLabel{font-size:12px}.qtitle{font-size:26px;margin:12px 0}.timelinePane{margin-top:8px;padding:8px}.paneTitle{font-size:12px}.paneTitle small{display:block;float:none;margin-top:3px}
- .timeline{padding:8px 0 10px}.card{min-width:112px;max-width:112px;padding:10px 7px}.card .year{font-size:19px}.slot{min-width:42px}.slot button{width:34px;height:34px}.gameBottom{grid-template-columns:1fr 1fr}.miniBest{font-size:12px}.result button{display:block;margin:8px auto 0}
+.appHeader{
+  max-width:1180px;margin:0 auto;
+  padding:calc(14px + env(safe-area-inset-top)) 16px 12px;
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+}
+.brandBlock{display:flex;align-items:center;gap:13px;min-width:0}
+.appLogoFrame{
+  width:78px;height:78px;border-radius:18px;overflow:hidden;position:relative;flex:none;
+  box-shadow:0 0 0 1px #ffffff25,0 0 28px #8f35ff55;
+}
+.appLogo{position:absolute;width:106%;height:106%;left:47%;top:50%;transform:translate(-50%,-50%);object-fit:cover}
+.brandCopy h1{margin:0;line-height:1;font-size:clamp(27px,5vw,42px);white-space:nowrap;letter-spacing:-1.5px}
+.pink{color:var(--pink)}.cyan{color:var(--cyan)}
+.brandCopy p{margin:5px 0 2px;font-size:13px;font-weight:800}
+.brandYears{text-align:center;font-size:14px;font-weight:900}.brandYears b:first-child{color:var(--pink)}.brandYears b:last-child{color:var(--cyan)}.brandYears span{padding:0 8px;color:#8791a7}
+.menuButton,.ghostBtn,.subtleBtn,.compact{
+  border:1px solid #3a4666;background:#141a2b;color:#fff;border-radius:10px;padding:11px 15px;font-weight:900
 }
 
-/* LANDSCAPE: use width for the actual game, not the icon */
+main{max-width:1180px;margin:0 auto;padding:0 14px 42px}
+.homeCard,.recordsCard,.resultScreen{
+  border:1px solid #303955;background:linear-gradient(180deg,#111522,#0b0e17);
+  border-radius:18px;padding:24px;margin-top:10px;text-align:center;box-shadow:0 18px 60px #0006
+}
+.homeIntro h2{margin:0 0 8px;font-size:clamp(22px,4vw,34px)}.homeIntro p{margin:0;color:var(--muted)}
+.homeStats{display:grid;grid-template-columns:repeat(3,1fr);max-width:760px;margin:24px auto 18px;border:1px solid #333d5d;border-radius:14px;overflow:hidden}
+.homeStats>div{padding:15px;border-right:1px solid #333d5d}.homeStats>div:last-child{border-right:0}
+.homeStats span{display:block;color:var(--muted);font-size:12px}.homeStats b{display:block;margin-top:6px;font-size:21px;color:var(--yellow)}
+.homeActions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.homeActions button,.bottomBar button{
+  border:0;border-radius:10px;padding:13px 22px;font-weight:900;background:linear-gradient(135deg,#ff4ca0,#ffcc35);color:#111
+}
+.homeActions .blueBtn,.bottomBar .blueBtn{background:linear-gradient(135deg,#2587ff,#586cff);color:white}
+.homeActions .ghostBtn,.bottomBar .ghostBtn{background:#151b2c;color:white;border:1px solid #3b4667}
+
+.statusBar{
+  display:grid;grid-template-columns:1fr 1.2fr 1fr .8fr;
+  background:#0d101a;border:1px solid #313a58;border-radius:13px;overflow:hidden;margin-bottom:10px
+}
+.statusItem{text-align:center;padding:10px;border-right:1px solid #313a58}.statusItem:last-child{border-right:0}
+.statusItem span{display:block;font-size:11px;color:#a6afc2}.statusItem b{font-size:23px;color:#fff;font-style:normal}.statusItem i{font-style:normal}.statusItem:nth-child(2) b{color:var(--yellow)}.statusItem small{font-size:11px}
+
+.gameLayout{display:grid;grid-template-columns:minmax(300px,.92fr) minmax(0,1.65fr);gap:12px}
+.questionCard,.timelineCard{
+  border:1px solid #3f2e68;border-radius:14px;background:linear-gradient(180deg,#111522,#0b0f18);overflow:hidden
+}
+.questionTop{text-align:center;font-weight:900;padding:12px;background:linear-gradient(90deg,#291348,#10244c);border-bottom:1px solid #5a2b87}
+.filmFrame{position:relative;background:#05060a}
+.filmHoles{height:17px;background:repeating-linear-gradient(90deg,#08090e 0 12px,#c89668 13px 25px,#08090e 26px 39px);opacity:.72}
+.questionVisual{
+  min-height:230px;padding:28px 20px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  background:
+    radial-gradient(circle at 75% 25%,#2c6fdc55,transparent 22%),
+    radial-gradient(circle at 25% 70%,#ff4c9f44,transparent 24%),
+    linear-gradient(145deg,#15102d,#071a34 60%,#19101b)
+}
+.questionVisual:before{content:"";position:absolute}
+.questionEra{font-size:12px;letter-spacing:4px;color:#93a1bb}
+.questionVisual h2{font-size:clamp(27px,4vw,42px);margin:16px 0 9px;line-height:1.15;text-shadow:0 4px 24px #000}
+.questionVisual p{margin:0;color:#aab2c6;font-size:12px}
+
+.timelineCard{padding:12px;display:flex;flex-direction:column}
+.timelineHeader{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}.miniLabel{font-size:10px;letter-spacing:2px;color:var(--cyan)}
+.timelineHeader h3{margin:2px 0 0;font-size:22px}.timelineHeader p{margin:0;color:var(--muted);font-size:11px}
+.timeline{
+  display:flex;align-items:stretch;overflow-x:auto;padding:14px 2px 18px;margin-top:7px;
+  -webkit-overflow-scrolling:touch;scrollbar-color:#42506e #0b0f18
+}
+.card{
+  min-width:132px;max-width:132px;background:#151b2b;border:1px solid #3a4668;border-radius:10px;
+  padding:13px 9px;text-align:center;box-shadow:inset 0 0 0 1px #ffffff08
+}
+.card .year{font-size:23px;font-weight:900;color:var(--yellow)}
+.card .name{font-size:11px;margin-top:7px;line-height:1.4}
+.slot{min-width:48px;display:flex;align-items:center;justify-content:center}
+.slot button{
+  width:38px;height:38px;padding:0;border-radius:50%;border:1px solid #ffffff55;
+  background:linear-gradient(135deg,var(--pink),var(--yellow));font-size:21px;font-weight:900
+}
+
+.result{margin:10px 0 0;padding:13px;border-radius:12px;text-align:center;background:#111827;border:1px solid #3f4b6c}
+.result.good{border-color:#40d986}.result.bad{border-color:#ff6578}.result strong{font-size:20px}
+.result button{margin-left:12px;border:0;border-radius:9px;padding:9px 15px;background:var(--yellow);font-weight:900}
+
+.bottomBar{
+  margin-top:10px;display:grid;grid-template-columns:auto auto 1fr 1fr auto;gap:8px;
+  border:1px solid #313b5a;border-radius:13px;padding:8px;background:#0c101a
+}
+.bestMini{padding:10px 12px;border:1px solid #394462;border-radius:10px;color:#c2c9d9;white-space:nowrap}.bestMini b{color:var(--yellow)}
+.subtleBtn{background:#171c2c!important;color:#fff!important;border:1px solid #394462!important}
+
+.sectionHead{display:flex;justify-content:space-between;align-items:center;text-align:left}.sectionHead h2{margin:3px 0}
+.recordRow{display:grid;grid-template-columns:48px 1fr auto;gap:12px;align-items:center;text-align:left;padding:13px 8px;border-bottom:1px solid #2e364e}
+.place,.pts{font-weight:900;color:var(--yellow)}.dangerBtn{margin-top:18px;border:1px solid #643342;background:#351824;color:#ffc1ce;padding:11px 16px;border-radius:10px}
+.bigscore{font-size:64px;font-weight:900;color:var(--yellow)}.muted{color:var(--muted)}
+footer{text-align:center;color:#596177;padding:10px 10px calc(16px + env(safe-area-inset-bottom));font-size:11px}
+
+/* iPhone portrait — reference-like one screen vertical UI */
+@media(max-width:767px) and (orientation:portrait){
+  .appHeader{padding:calc(10px + env(safe-area-inset-top)) 10px 8px;justify-content:center}
+  .appLogoFrame{width:58px;height:58px;border-radius:14px}.brandBlock{gap:9px}.brandCopy h1{font-size:25px}.brandCopy p{font-size:10px}.brandYears{font-size:11px}.menuButton{display:none}
+  main{padding:0 8px 28px}.homeCard,.recordsCard,.resultScreen{padding:16px 12px;margin-top:6px}
+  .homeStats{margin:15px 0 12px}.homeStats>div{padding:10px 5px}.homeStats b{font-size:16px}.homeActions{display:grid;grid-template-columns:1fr 1fr}.homeActions .ghostBtn{grid-column:1/-1}
+
+  .statusBar{grid-template-columns:1fr 1fr 1fr;margin-bottom:7px}.typeItem{display:none}.statusItem{padding:7px 4px}.statusItem b{font-size:18px}
+  .gameLayout{display:block}.questionCard{margin-bottom:7px}.questionTop{padding:9px;font-size:12px}.filmHoles{height:12px}.questionVisual{min-height:150px;padding:18px 13px}.questionVisual h2{font-size:27px;margin:11px 0 6px}
+  .timelineCard{padding:8px}.timelineHeader{align-items:flex-start}.timelineHeader h3{font-size:16px}.timelineHeader p{font-size:9px;max-width:145px;text-align:right}
+  .timeline{padding:8px 0 11px}.card{min-width:112px;max-width:112px;padding:9px 6px}.card .year{font-size:19px}.card .name{font-size:10px}.slot{min-width:41px}.slot button{width:33px;height:33px;font-size:18px}
+  .bottomBar{grid-template-columns:1fr 1fr 1fr;margin-top:7px}.bottomBar .bestMini{display:none}.bottomBar button{padding:9px 6px;font-size:10px}.bottomBar .subtleBtn{grid-column:1}.bottomBar .ghostBtn{grid-column:3}
+  .result{font-size:12px;padding:10px}.result strong{font-size:16px}.result button{display:block;margin:8px auto 0}
+}
+
+/* iPhone landscape — reference-like wide 2-panel UI */
 @media(max-height:500px) and (orientation:landscape){
- .brand{padding:calc(5px + env(safe-area-inset-top)) 12px 5px}.brandInner{justify-content:flex-start;max-width:1180px}.appLogoFrame{width:43px;height:43px;border-radius:10px}.brandText{display:flex;align-items:center;gap:13px}.brandText h1{font-size:22px;white-space:nowrap}.sub{font-size:10px;margin:0}.years{font-size:11px;margin:0}
- main{max-width:1180px;padding:7px 10px calc(7px + env(safe-area-inset-bottom))}.panel{margin:5px auto;padding:12px 18px}.startPanel{max-width:900px}.startPanel h2{margin:4px}.startPanel p{margin:5px}.bestbox{display:inline-block;margin:5px 10px;padding:7px 20px}.bestbox b{font-size:20px}.modes{display:inline-flex;margin:5px}.recordBtn{margin:5px}
- .hud{margin-bottom:6px}.hud>div{padding:5px 10px}.hud b{font-size:16px}.hud span{font-size:9px}.playGrid{grid-template-columns:minmax(250px,.65fr) minmax(0,1.75fr);gap:7px}.question{min-height:105px;padding:10px}.questionLabel{font-size:10px}.qtitle{font-size:22px;margin:8px 0}.conceal{font-size:9px}.timelinePane{padding:7px}.paneTitle{font-size:11px}.timeline{padding:5px 2px 7px}.card{min-width:108px;max-width:108px;padding:7px 6px}.card .year{font-size:17px}.card .name{font-size:9px;margin-top:3px}.slot{min-width:38px}.slot button{width:30px;height:30px;font-size:18px}.result{margin:5px auto;padding:7px;font-size:11px}.result strong{font-size:15px}.gameBottom{margin-top:5px}.gameBottom button,.miniBest{padding:6px 10px;font-size:10px}footer{display:none}
+  .appHeader{
+    padding:calc(5px + env(safe-area-inset-top)) 12px 5px;
+    border-bottom:1px solid #242e4a;
+  }
+  .appLogoFrame{width:46px;height:46px;border-radius:11px}.brandCopy h1{font-size:23px}.brandCopy p{font-size:9px;margin:2px 0}.brandYears{font-size:10px;text-align:left}.menuButton{padding:8px 12px;font-size:11px}
+  main{padding:0 10px calc(7px + env(safe-area-inset-bottom))}.homeCard{padding:12px 18px;margin-top:5px}.homeIntro h2{font-size:20px}.homeIntro p{font-size:11px}.homeStats{margin:10px auto}.homeStats>div{padding:7px}.homeActions button{padding:9px 15px}
+
+  .statusBar{grid-template-columns:1fr 1.2fr 1fr .8fr;margin-bottom:6px}.statusItem{padding:5px 8px}.statusItem span{font-size:9px}.statusItem b{font-size:16px}
+  .gameLayout{grid-template-columns:minmax(310px,.95fr) minmax(0,1.7fr);gap:7px}.questionTop{padding:7px;font-size:11px}.filmHoles{height:9px}.questionVisual{min-height:150px;padding:12px}.questionVisual h2{font-size:23px;margin:8px 0 5px}.questionVisual p{font-size:9px}
+  .timelineCard{padding:7px}.timelineHeader h3{font-size:16px}.timelineHeader p{font-size:9px}.timeline{padding:6px 0 8px;margin-top:3px}.card{min-width:102px;max-width:102px;padding:7px 5px}.card .year{font-size:17px}.card .name{font-size:9px;margin-top:3px}.slot{min-width:36px}.slot button{width:29px;height:29px;font-size:16px}
+  .result{margin-top:5px;padding:7px;font-size:10px}.result strong{font-size:14px}.result button{padding:6px 10px}
+  .bottomBar{margin-top:5px;padding:5px;grid-template-columns:auto auto 1fr 1fr auto}.bottomBar button,.bestMini{padding:6px 9px;font-size:10px}
+  footer{display:none}
 }
