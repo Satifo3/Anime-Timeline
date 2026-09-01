@@ -1,16 +1,35 @@
-# ANIME TIMELINE — Prototype v0.4
+# ANIME TIMELINE — Prototype v0.5
 
-## v0.4
-- 収録作品数：160作品
-- 「平成アニメ × 映画フィルム」デザインのアプリアイコンを組み込み
-- ブラウザ favicon 対応
-- iPhone / iPad のホーム画面用 apple-touch-icon 対応
-- Web App Manifest 追加
-- アプリ画面上部にもアイコンを表示
-- v0.3 のレコード機能・BEST SCORE・上位10件・10問/20問モードを維持
+## iPhone向けフラット構成
+この版は GitHub へiPhoneからアップロードしやすいように、
+画像を含めてすべてのファイルを同じ階層に置いてあります。
 
-## GitHub Pages
-フォルダ内のファイル一式をそのままアップロードすれば動作します。
+解凍すると以下が全部まとめて展開されます。
 
-## iPhoneでホーム画面に追加
-GitHub Pagesで公開後、Safariの共有メニュー → 「ホーム画面に追加」で今回の専用アイコンが表示されます。
+- index.html
+- style.css
+- app.js
+- anime-data.js
+- manifest.webmanifest
+- icon-512.png
+- icon-192.png
+- apple-touch-icon.png
+- favicon.png
+- README.md
+
+assets フォルダは不要です。
+
+## 収録
+160作品
+
+## 機能
+- 10問 / 20問
+- BEST SCORE
+- 上位10レコード
+- 正解率
+- プレイ日時保存
+- iPhoneホーム画面アイコン
+- favicon
+- GitHub Pages対応
+
+GitHubには、解凍後に出てきたファイルを全部まとめてアップロードすればOKです。
